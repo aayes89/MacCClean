@@ -22,7 +22,15 @@ vaciar_directorio() {
 
 # Función para limpiar la caché del sistema Mac
 limpiar_cache_mac() {
-    echo "Limpiando la caché del sistema Mac ..."
+    echo "Limpiando la caché del sistema Mac ...\n"
+    sudo dscacheutil -flushcache
+    echo "Limpiando cache de Chrome...\n"
+    sudo rm -rf ~/Library/Caches/Google/Chrome/default/*
+    echo "Limpiando la cache de red...\n"
+    sudo killall -HUP mDNSResponder
+    echo "Limpiando portapapeles...\n"
+    sudo pbcopy /dev/null
+    echo "Limpiando memoria RAM...\n"
     sudo purge
     echo "Caché limpiada."
 }
